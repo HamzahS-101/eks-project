@@ -23,7 +23,7 @@ variable "availability_zones" {
   description = "List of availability zones to use."
 }
 
-variable "eks_cluster_name" {
+variable "cluster_name" {
   description = "Name of the EKS Cluster to tag the subnets"
   type        = string
 }
