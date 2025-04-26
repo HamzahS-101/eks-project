@@ -1,6 +1,6 @@
 module "eks" {
-  source = "terraform-aws-modules/eks/aws"
-  version =  "20.36.0"
+  source  = "terraform-aws-modules/eks/aws"
+  version = "20.36.0"
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
@@ -8,7 +8,8 @@ module "eks" {
   cluster_endpoint_public_access       = true
   cluster_endpoint_public_access_cidrs = var.cluster_endpoint_public_access_cidrs
 
-  enable_irsa = true
+  enable_irsa                              = true
+  enable_cluster_creator_admin_permissions = true
 
   vpc_id                   = var.vpc_id
   subnet_ids               = var.subnet_ids
