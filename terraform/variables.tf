@@ -1,4 +1,4 @@
-#VPC
+# VPC
 
 variable "vpc_cidr" {
   type        = string
@@ -26,7 +26,7 @@ variable "availability_zones" {
 }
 
 
-#EKS
+# EKS
 
 variable "cluster_name" {
   description = "Name of the EKS cluster"
@@ -70,10 +70,62 @@ variable "node_max_size" {
 
 
 
-#Route53
+# Route53
 
 variable "zone_name" {
   description = "Hosted Zone name"
   type        = string
 }
 
+# Database
+
+variable "db_subnet_group_name" {
+  description = "Name for the RDS subnet group"
+  type        = string
+}
+
+variable "db_instance_identifier" {
+  description = "Identifier for the RDS instance"
+  type        = string
+}
+
+variable "db_allocated_storage" {
+  description = "Allocated storage for RDS instance in GB"
+  type        = number
+}
+
+variable "db_engine" {
+  description = "Database engine (e.g., mysql)"
+  type        = string
+}
+
+variable "db_engine_version" {
+  description = "Database engine version"
+  type        = string
+}
+
+variable "db_instance_class" {
+  description = "Database instance class"
+  type        = string
+}
+
+
+variable "db_name" {
+  description = "Database name inside RDS"
+  type        = string
+}
+
+variable "db_username" {
+  description = "Master username for the database"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Master password for the database"
+  type        = string
+}
+
+variable "db_secret_name" {
+  description = "Name of the AWS Secrets Manager secret for the database credentials."
+  type        = string
+}

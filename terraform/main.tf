@@ -49,3 +49,20 @@ module "helm" {
     module.iam
   ]
 }
+
+module "database" {
+  source = "./modules/database"
+
+  private_subnet_ids       = module.vpc.private_subnet_ids
+  db_subnet_group_name     = var.db_subnet_group_name
+  db_instance_identifier   = var.db_instance_identifier
+  allocated_storage        = var.db_allocated_storage
+  engine                   = var.db_engine
+  engine_version           = var.db_engine_version
+  instance_class           = var.db_instance_class
+  db_name                  = var.db_name
+  db_username              = var.db_username
+  db_password              = var.db_password
+  db_secret_name           = var.db_secret_name
+}
+
