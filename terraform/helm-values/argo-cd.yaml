@@ -1,0 +1,17 @@
+server:
+  extraArgs:
+    - --insecure
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: argocd.eks.hamzahsahal.com
+    annotations:
+      nginx.org/hsts: "false"
+      cert-manager.io/cluster-issuer: cert-issuer
+    tls:
+      - secretName: argocd-ingress-tls
+        hosts:
+          - argocd.eks.hamzahsahal.com
+  
