@@ -25,6 +25,12 @@ module "eks" {
   node_max_size                        = var.node_max_size
 }
 
+
+module "route53" {
+  source = "./modules/route53"
+
+  zone_name = var.zone_name
+}
 module "iam" {
   source = "./modules/iam"
 
@@ -32,8 +38,14 @@ module "iam" {
   zone_arn          = module.route53.zone_arn
 }
 
-module "route53" {
-  source = "./modules/route53"
+module "helm" {
+  source = "./modules/helm"
 
-  zone_name = var.zone_name
+  cert_manager_irsa_arn = module.iam.cert_manager_irsa_arn
+  external_dns_irsa_arn = module.iam.external_dns_irsa_arn
+
+  depends_on = [
+    module.eks,
+    module.iam
+  ]
 }
