@@ -7,7 +7,7 @@ resource "aws_secretsmanager_secret_version" "db_secret_version" {
 
   secret_string = jsonencode({
     host     = aws_db_instance.this.address
-    user     = var.db_username
+    username = var.db_username
     password = var.db_password
     database = var.db_name
   })
