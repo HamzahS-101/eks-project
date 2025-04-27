@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: quizapp-ingress
+  namespace: quizapp
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: cert-issuer
+spec:
+  tls:
+  - hosts:
+    - quiz.eks.hamzahsahal.com
+    secretName: quizapp-tls
+  rules:
+  - host: quiz.eks.hamzahsahal.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: quizapp
+            port:
+              number: 80

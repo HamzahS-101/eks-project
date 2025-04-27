@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quizapp-service
+  namespace: quizapp
+spec:
+  type: ClusterIP
+  selector:
+    app: quizapp
+  ports:
+    - port: 80
+      targetPort: 3000
+
