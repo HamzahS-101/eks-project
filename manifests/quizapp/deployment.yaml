@@ -13,7 +13,6 @@ spec:
       labels:
         app: quizapp
     spec:
-      serviceAccountName: external-secrets-sa
       containers:
       - name: quizapp
         image: 266735817823.dkr.ecr.eu-west-2.amazonaws.com/quiz-app:latest
@@ -24,20 +23,21 @@ spec:
           valueFrom:
             secretKeyRef:
               name: quizapp-db-secrets
-              key: host
+              key: db_host
         - name: DB_USER
           valueFrom:
             secretKeyRef:
               name: quizapp-db-secrets
-              key: username
+              key: db_user
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: quizapp-db-secrets
-              key: password
+              key: db_password
         - name: DB_NAME
           valueFrom:
             secretKeyRef:
               name: quizapp-db-secrets
-              key: database
+              key: db_name
+
 
