@@ -60,10 +60,31 @@ resource "helm_release" "argocd" {
   chart      = "argo-cd"
   version    = "7.8.26"
 
-  namespace        = "argo-cd"
   create_namespace = true
+  namespace        = "argo-cd"
 
   values = [
     "${file("helm-values/argo-cd.yaml")}"
   ]
+
+  depends_on = [
+    helm_release.cert_manager,
+    helm_release.external_dns,
+    null_resource.cluster_issuer
+  ]
+}
+
+resource "helm_release" "external_secrets" {
+  name       = "external-secrets"
+  repository = "https://charts.external-secrets.io"
+  chart      = "external-secrets"
+  version    = "0.9.11"
+
+  create_namespace = true
+  namespace        = "secrets"
+
+  set {
+    name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+    value = var.external_secrets_irsa_arn
+  }
 }
