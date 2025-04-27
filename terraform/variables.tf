@@ -1,3 +1,9 @@
+variable "region" {
+  description = "AWS Region"
+  type        = string
+
+}
+
 # VPC
 
 variable "vpc_cidr" {
@@ -129,3 +135,7 @@ variable "db_secret_name" {
   description = "Name of the AWS Secrets Manager secret for the database credentials."
   type        = string
 }
+
+
+
+
