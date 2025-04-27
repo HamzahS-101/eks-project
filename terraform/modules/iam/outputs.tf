@@ -7,3 +7,8 @@ output "external_dns_irsa_arn" {
   description = "ARN for the external-dns IRSA"
   value       = module.external_dns_irsa.iam_role_arn
 }
+
+output "external_secrets_irsa_arn" {
+  description = "ARN for the external-secrets IRSA"
+  value       = module.external_secrets_irsa.iam_role_arn
+}
