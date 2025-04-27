@@ -19,6 +19,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: quizapp
+            name: quizapp-service
             port:
               number: 80
